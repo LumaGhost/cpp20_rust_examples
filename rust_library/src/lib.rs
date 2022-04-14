@@ -1,7 +1,5 @@
-// extern crate cppsrc-rsbind;
 
-// include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
-include!("../../cpp_src/build/cppsrc-rsbind.rs");
+extern "C" { pub fn hello_from_cpp () ; }
 
 fn main() {
     println!("Hello, world!");
