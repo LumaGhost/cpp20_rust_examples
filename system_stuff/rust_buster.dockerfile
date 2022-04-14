@@ -1,9 +1,9 @@
 FROM rust:1.60-buster
 
 # apt list --installed. any marked [installed] i think were explicitly installed
-RUN apt-get update && apt-get install -y python3 python3-pip libc++-11-dev libc++abi-11-dev
+RUN apt-get update && apt-get install -y python3 python3-pip clang-tools-11 libc++-11-dev libc++abi-11-dev
 
-RUN pip3 install meson
+RUN pip3 install meson ninja
 
 RUN cargo install bindgen --version 0.59.2 --root /home/from_docker_build/cargo_installs/
 
