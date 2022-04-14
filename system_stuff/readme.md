@@ -1,0 +1,1 @@
+this is my configuration specific to my system, its only shared as an example of what your enviornment setup could look like (:

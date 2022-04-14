@@ -1,0 +1,4 @@
+Cargo.lock
+.devcontainer/
+rust_library/target/
+notes.md
