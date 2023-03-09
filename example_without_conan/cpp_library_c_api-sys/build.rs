@@ -14,15 +14,21 @@ fn run_subprocess(cmd: &mut std::process::Command, cmd_name: &str) {
 fn main() {
 
 
-    // should potentially be env vars. at least the native file
-    let native_file = std::env::current_dir().unwrap().join("..").join("..").join("system_stuff").join("rust-clang-native.ini");
     let meson_cwd =  std::env::current_dir().unwrap().join("cpp_library_c_api");
     let build_dir = meson_cwd.join("build");
 
+    let mut meson_setup_cmd = std::process::Command::new("meson");
+
+    meson_setup_cmd.current_dir(meson_cwd.to_str().unwrap()).arg("setup");
+
+    if let Some(native_file) = std::env::var_os("CARGO_USER_MESON_NATIVE_FILE").map(|p|std::path::PathBuf::from(p)) {
+        meson_setup_cmd.args(["--native-file", native_file.to_str().unwrap()]);
+    }
+    
+    meson_setup_cmd.arg(build_dir.to_str().unwrap());
+
     // meson setup
-    run_subprocess(std::process::Command::new("meson").current_dir(meson_cwd.to_str().unwrap())
-        .args(["setup", "--native-file", native_file.to_str().unwrap(), build_dir.to_str().unwrap()]),
-        "meson setup");
+    run_subprocess(&mut meson_setup_cmd, "meson setup");
 
     // meson compile
     run_subprocess(std::process::Command::new("meson").current_dir(meson_cwd.to_str().unwrap())
