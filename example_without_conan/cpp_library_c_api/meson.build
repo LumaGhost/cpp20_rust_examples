@@ -1,8 +1,8 @@
 
-project('rust_calls_cpp', 'cpp',
+project('cpp_library_c_api', 'cpp',
     version         : '0.0.0')
 
-cpplib = shared_library('cppsrc', 'src/lib.cpp',
+cpplib = shared_library('cpp_library_c_api', 'src/lib.cpp',
     include_directories : include_directories('include'),
     override_options : ['cpp_std=c++2a'],
     install : true)

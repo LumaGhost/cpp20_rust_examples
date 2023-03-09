@@ -16,7 +16,7 @@ fn main() {
 
     // should potentially be env vars. at least the native file
     let native_file = std::env::current_dir().unwrap().join("..").join("..").join("system_stuff").join("rust-clang-native.ini");
-    let meson_cwd =  std::env::current_dir().unwrap().join("..").join("cpp_library");
+    let meson_cwd =  std::env::current_dir().unwrap().join("..").join("cpp_library_c_api");
     let build_dir = meson_cwd.join("build");
 
     // meson setup
@@ -32,12 +32,12 @@ fn main() {
     // meson install?
 
     let cpp_lib_dir = &build_dir;
-    // let cpp_lib_dir = std::path::Path::new("/workspaces/cpp20_rust/example_without_conan/cpp_library/build");
-    let cpp_lib_name = "cppsrc";
+    let cpp_lib_name = "cpp_library_c_api";
     println!("cpp lib dir: {}", cpp_lib_dir.to_str().unwrap());
     println!("exists: {}", cpp_lib_dir.exists());
 
     println!("cargo:rerun-if-changed={}", cpp_lib_dir.to_str().unwrap());
+    println!("cargo:rerun-if-changed={}", meson_cwd.to_str().unwrap());
     println!("cargo:rerun-if-changed={}", "build.rs");
     println!("cargo:rustc-link-search=native={}", cpp_lib_dir.to_str().unwrap());
     println!("cargo:rustc-link-lib={}", cpp_lib_name);
