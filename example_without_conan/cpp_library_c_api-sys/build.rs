@@ -16,7 +16,7 @@ fn main() {
 
     // should potentially be env vars. at least the native file
     let native_file = std::env::current_dir().unwrap().join("..").join("..").join("system_stuff").join("rust-clang-native.ini");
-    let meson_cwd =  std::env::current_dir().unwrap().join("..").join("cpp_library_c_api");
+    let meson_cwd =  std::env::current_dir().unwrap().join("cpp_library_c_api");
     let build_dir = meson_cwd.join("build");
 
     // meson setup
