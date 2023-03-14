@@ -3,4 +3,4 @@ zlib/1.2.12
 fmt/8.1.1
 
 [generators]
-pkg_config
+PkgConfigDeps

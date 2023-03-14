@@ -1,17 +1,26 @@
 use std::io::Write;
 
+fn run_subprocess(cmd: &mut std::process::Command, cmd_name: &str) {
+    let out = cmd.output().expect(cmd_name);
+    std::io::stdout().write_all(&out.stdout).unwrap();
+    std::io::stderr().write_all(&out.stderr).unwrap();
+    assert!(out.status.success());
+}
+
 fn main() {
 
     // conan profile name and install folder could be envs
     let install_folder_conan = std::env::current_dir().unwrap().join("conan_build");
 
-    let conan_install = 
-        std::process::Command::new("conan")
-            .args(["install", "-if", install_folder_conan.to_str().unwrap(), "-pr", "clang-sys", "."])
-            .output().expect("conan install failed");
-    std::io::stdout().write_all(&conan_install.stdout).unwrap();
-    std::io::stderr().write_all(&conan_install.stderr).unwrap();
-    assert!(conan_install.status.success());
+    let mut conan_install = std::process::Command::new("conan");
+    
+    conan_install.args(["install", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
+
+    if let Some(conan_profile) = std::env::var_os("CARGO_CONAN_PROFILE").map(|p|std::path::PathBuf::from(p)) {
+        conan_install.args(["-pr:h", conan_profile.to_str().unwrap(), "-pr:b", conan_profile.to_str().unwrap()]);
+    }
+    conan_install.arg(".");
+    run_subprocess(&mut conan_install, "conan install");
 
     // is there a like... match let? im used to if let but cant in rust because option doesnt convert to bool.
     let current_pgk_config_path = std::env::var_os("PKG_CONFIG_PATH");
