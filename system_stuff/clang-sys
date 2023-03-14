@@ -4,6 +4,7 @@ build_type=Release
 compiler=clang
 compiler.libcxx=libc++ 
 compiler.version=11
+compiler.cppstd=20
 os=Linux
 [buildenv]
 CC=/usr/bin/clang-11

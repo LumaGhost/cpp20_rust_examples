@@ -1,12 +1,13 @@
 #include <iostream>
+#include <type_traits>
+#include <numbers>
+#include <concepts>
 #include "cpp_library.h"
-#include "fmt.h"
+#include <fmt/format.h>
 
 
 
 void cpp_library(){
-    fmt();
-    
 
     #ifdef NDEBUG
     std::cout << "cpp_library/0.0: Hello World Release!\n";
@@ -98,4 +99,20 @@ void cpp_library(){
     #if __CYGWIN__
     std::cout << "  cpp_library/0.0: __CYGWIN__" << __CYGWIN__<< "\n";
     #endif
+}
+
+// toy concept to demonstrate usage of c++20 functionality
+template<class T>
+concept IntsOnly = std::is_same_v<T, int>;
+
+
+template <IntsOnly T>
+static void print_uwu() {
+    fmt::print("uwu");
+}
+
+extern "C" void c_api() {
+    cpp_library();
+    print_uwu<int>();
+    fmt::print("pi from c++: {}.", std::numbers::pi);
 }

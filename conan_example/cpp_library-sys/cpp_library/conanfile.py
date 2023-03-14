@@ -8,13 +8,17 @@ class cpp_libraryConan(ConanFile):
     name = "cpp_library"
     version = "0.0"
 
+    requires = "fmt/9.1.0"
+
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True}
+    default_options = {"shared": True, "fPIC": True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "meson.build", "src/*"
+
+    generators = "PkgConfigDeps"
 
     def config_options(self):
         if self.settings.os == "Windows":
