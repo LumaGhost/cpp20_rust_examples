@@ -2,5 +2,5 @@ Cargo.lock
 .devcontainer/
 *target/
 *build/
-rust_conan/conan_build
+build-*/
 notes.md

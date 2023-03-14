@@ -6,14 +6,14 @@ from conan.tools.files import copy
 
 class cpp_libraryConan(ConanFile):
     name = "cpp_library"
-    version = "0.0"
+    version = "0.1"
 
     requires = "fmt/9.1.0"
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": True, "fPIC": True}
+    default_options = {"shared": True, "fPIC": True, "fmt/*:header_only": False}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "meson.build", "src/*"

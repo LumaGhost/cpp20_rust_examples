@@ -2,4 +2,5 @@
 
 int main() {
     cpp_library();
+    c_api();
 }
