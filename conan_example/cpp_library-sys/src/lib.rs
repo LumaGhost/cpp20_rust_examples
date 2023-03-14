@@ -1,6 +1,4 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+extern "C" { pub fn c_api(); }
 
 #[cfg(test)]
 mod tests {
@@ -8,7 +6,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        unsafe { c_api() };
     }
 }
