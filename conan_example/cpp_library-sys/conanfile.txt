@@ -1,5 +1,5 @@
 [requires]
-cpp_library/0.2
+cpp_library/0.3
 
 [generators]
 PkgConfigDeps

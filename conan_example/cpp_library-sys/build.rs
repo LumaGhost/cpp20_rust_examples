@@ -7,6 +7,15 @@ fn run_subprocess(cmd: &mut std::process::Command, cmd_name: &str) {
     assert!(out.status.success());
 }
 
+fn prepare_ld_path(paths: &Vec<std::path::PathBuf>) -> String {
+    let mut ld_path = String::new();
+    for path in paths {
+        ld_path.push_str(path.to_str().unwrap());
+        ld_path.push(':');
+    }
+    ld_path
+}
+
 fn main() {
 
     // conan profile name and install folder could be envs
@@ -30,7 +39,7 @@ fn main() {
     }
     println!("PKG_CONFIG_PATH:{}", std::env::var_os("PKG_CONFIG_PATH").unwrap().to_str().unwrap());
     
-    let cpp_lib = pkg_config::Config::new().atleast_version("0.2").statik(false).probe("cpp_library").unwrap();
+    let cpp_lib = pkg_config::Config::new().atleast_version("0.3").statik(false).probe("cpp_library").unwrap();
     println!("link paths: {:?}", cpp_lib.link_paths);
     // will fail if it cant find the lib (:
     // pkg_config::Config::new().probe("asdfasdfasdfsdfasdf").unwrap();
@@ -39,6 +48,6 @@ fn main() {
     println!("cargo:rerun-if-changed={}", install_folder_conan.to_str().unwrap());
     println!("cargo:rerun-if-changed={}", "build.rs");
     // looks like the rpath is already set correctly? thanks to the .pc files or the pkgconfig crate? idk lol
-    // println!("cargo:rustc-env=LD_LIBRARY_PATH={}", cpp_lib_dir.to_str().unwrap())
+    println!("cargo:rustc-env=LD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths))
     
 }
