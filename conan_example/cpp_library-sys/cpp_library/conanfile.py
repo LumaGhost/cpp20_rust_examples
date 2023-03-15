@@ -6,7 +6,7 @@ from conan.tools.files import copy
 
 class cpp_libraryConan(ConanFile):
     name = "cpp_library"
-    version = "0.1"
+    version = "0.2"
 
     requires = "fmt/9.1.0"
 

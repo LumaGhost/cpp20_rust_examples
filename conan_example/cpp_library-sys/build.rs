@@ -30,7 +30,7 @@ fn main() {
     }
     println!("PKG_CONFIG_PATH:{}", std::env::var_os("PKG_CONFIG_PATH").unwrap().to_str().unwrap());
     
-    let cpp_lib = pkg_config::Config::new().atleast_version("0.1").statik(false).probe("cpp_library").unwrap();
+    let cpp_lib = pkg_config::Config::new().atleast_version("0.2").statik(false).probe("cpp_library").unwrap();
     println!("link paths: {:?}", cpp_lib.link_paths);
     // will fail if it cant find the lib (:
     // pkg_config::Config::new().probe("asdfasdfasdfsdfasdf").unwrap();

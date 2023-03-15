@@ -7,6 +7,6 @@
   #define CPP_LIBRARY_EXPORT
 #endif
 
-CPP_LIBRARY_EXPORT void cpp_library();
+CPP_LIBRARY_EXPORT extern "C" void cpp_library();
 
 CPP_LIBRARY_EXPORT extern "C" void c_api();
