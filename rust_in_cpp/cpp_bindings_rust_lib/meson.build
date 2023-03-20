@@ -12,7 +12,7 @@ rust_dylib = cxx_cc.find_library('cppsrc',
 '''
 
 rust_lib = custom_target('rust_lib',
-                        command: ['cargo', 'build', '-vv', '--manifest-path', get_option('cargo_mainifest_path')],
+                        command: ['python3', '/workspaces/cpp20_rust/rust_in_cpp/cpp_bindings_rust_lib/cargo_build.py', '--cargo_manifest_path', get_option('cargo_mainifest_path')],
                         env: {'CARGO_TARGET_DIR': get_option('cargo_target_dir')},
                         install: true,
                         install_dir: 'rust_lib',
