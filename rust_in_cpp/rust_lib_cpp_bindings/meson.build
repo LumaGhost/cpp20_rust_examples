@@ -22,3 +22,13 @@ rust_lib = custom_target('rust_lib',
                         install: true,
                         install_dir: 'rust_lib_c_abi',
                         output: ['librust_lib_c_abi.so', 'rust_lib_c_abi.hpp' ])
+
+message(rust_lib.full_path())
+message(rust_lib[0].full_path())
+message(rust_lib[1].full_path())
+
+rust_lib_dep = declare_dependency(include_directories: include_directories('include'),
+                                  link_with: rust_lib[0])
+
+tests = executable('cpp_binding_tests', meson.project_source_root() + '/test/rust_lib_cpp_bindings_tests.cpp', dependencies: rust_lib_dep)
+test('binding tests', tests)
