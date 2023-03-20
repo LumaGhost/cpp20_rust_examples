@@ -1,2 +1,2 @@
-option('cargo_mainifest_path', type : 'string', value : '/workspaces/cpp20_rust/rust_in_cpp/rust_lib/Cargo.toml', description : 'directory to search for cargo.toml')
-option('cargo_target_dir', type : 'string', value : '/workspaces/cpp20_rust/rust_in_cpp/rust_lib/rust_target', description : 'output directory for cargo build artifacts')
+option('cargo_mainifest_path', type : 'string', description : 'directory to search for cargo.toml')
+option('cargo_target_dir', type : 'string', description : 'output directory for cargo build artifacts')
