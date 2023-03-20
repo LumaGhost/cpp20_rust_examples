@@ -4,7 +4,7 @@ project('cpp_bindings_rust_lib', 'cpp',
 pymod = import('python')
 py = pymod.find_installation('python3')
 
-cargo_manifest_path = meson.project_source_root() + '/../rust_lib/Cargo.toml'
+cargo_manifest_path = meson.project_source_root() + '/rust_lib/Cargo.toml'
 cargo_target_dir = meson.project_build_root() + '/rust_lib/'
 
 if get_option('cargo_mainifest_path') != ''
