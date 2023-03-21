@@ -14,9 +14,9 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: "find clang"
-        run: find / -name 'clang*'
+        run: find /usr/bin/ -name 'clang*'
       - name: "find rustc"
-        run: find / -name 'rustc'
+        run: find /usr/ -name 'rustc'
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r system_stuff/ci/linux/requirements.txt
