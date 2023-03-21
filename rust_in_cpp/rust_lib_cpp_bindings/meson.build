@@ -15,6 +15,12 @@ if get_option('cargo_target_dir') != ''
     cargo_target_dir = get_option('cargo_target_dir')
 endif
 
+
+dylib_extension = '.so'
+if host_machine.system() == 'windows'
+    dylib_extension = '.dll'
+endif 
+
 install_dir = 'rust_lib_c_abi'
 
 rust_lib = custom_target('rust_lib',
@@ -23,7 +29,7 @@ rust_lib = custom_target('rust_lib',
                                     '--cargo_target_dir', cargo_target_dir],
                         install: true,
                         install_dir: install_dir + '/lib',
-                        output: ['librust_lib_c_abi.so'])
+                        output: ['librust_lib_c_abi' + dylib_extension])
 
 inc = include_directories('include')
 
