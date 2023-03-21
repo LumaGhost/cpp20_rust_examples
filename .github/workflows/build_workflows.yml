@@ -14,14 +14,14 @@ jobs:
     runs-on: ${{ inputs.image_name }}
     timeout-minutes: 10
     steps:
+      - name: windows inspecton
+        if: ${{ inputs.platform_name }} == 'windows'
+        run: dir \s \b D:\*clang*
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: windows inspecton
-        if: ${{ inputs.platform_name }} == 'windows'
-        run: Find-ChildItem -Type f -Name ".*clang"
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
