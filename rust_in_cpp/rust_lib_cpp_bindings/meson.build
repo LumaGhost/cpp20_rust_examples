@@ -21,6 +21,11 @@ if host_machine.system() == 'windows'
     dylib_extension = '.dll'
 endif 
 
+dylib_prefix = 'lib'
+if host_machine.system() == 'windows'
+    dylib_prefix = ''
+endif 
+
 install_dir = 'rust_lib_c_abi'
 
 rust_lib = custom_target('rust_lib',
@@ -29,7 +34,7 @@ rust_lib = custom_target('rust_lib',
                                     '--cargo_target_dir', cargo_target_dir],
                         install: true,
                         install_dir: install_dir + '/lib',
-                        output: ['librust_lib_c_abi' + dylib_extension])
+                        output: [dylib_prefix + 'rust_lib_c_abi' + dylib_extension])
 
 inc = include_directories('include')
 
