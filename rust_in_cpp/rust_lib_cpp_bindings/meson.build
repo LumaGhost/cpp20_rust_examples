@@ -33,5 +33,4 @@ install_headers('include/rust_lib_cpp_bindings.hpp',
 rust_lib_cpp_bindings = declare_dependency(include_directories: inc,
                                            link_with: rust_lib[0])
 
-tests = executable('cpp_binding_tests', meson.project_source_root() + '/test/rust_lib_cpp_bindings_tests.cpp', dependencies: rust_lib_cpp_bindings)
-test('binding tests', tests)
+subdir('test')
