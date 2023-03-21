@@ -8,6 +8,14 @@ use std::path::PathBuf;
 
 
 fn main() {
+
+    if let Some(_) = env::var_os("RUST_LIB_GENERATE_BINDINGS") {
+        generate_bindings();
+    }
+
+}
+
+fn generate_bindings() {
     let crate_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
 
     let package_name = env::var("CARGO_PKG_NAME").unwrap();
