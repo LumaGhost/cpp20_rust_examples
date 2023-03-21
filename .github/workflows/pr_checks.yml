@@ -4,6 +4,11 @@ on:
     branches:
       - main
 jobs:
+  build-workflows-windows:
+    uses: ./.github/workflows/build_workflows.yml
+    with:
+      image_name: windows-latest
+      platform_name: windows
   build-workflows-linux:
     uses: ./.github/workflows/build_workflows.yml
     with:
