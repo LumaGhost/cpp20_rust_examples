@@ -16,11 +16,7 @@ jobs:
     steps:
       - name: windows inspecton
         if: ${{ inputs.platform_name }} == 'windows'
-        run: |
-          Get-Childitem -Path D:\ -Include *clang* -File -Recurse
-          Get-Childitem -Path D:\ -Include *llvm* -Recurse
-          Get-Childitem -Path D:\ -Include *rustc* -File -Recurse
-        shell: powershell
+        run: Get-Childitem -Path D:\ -Include *llvm* -Recurse
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
