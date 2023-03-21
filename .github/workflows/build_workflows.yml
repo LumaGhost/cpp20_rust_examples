@@ -17,7 +17,7 @@ jobs:
       - name: windows inspecton
         if: ${{ inputs.platform_name }} == 'windows'
         run: |
-          Get-Childitem –Path D:\ -Include *clang*.exe -File -Recurse
+          Get-Childitem -Path D:\ -Include *clang*.exe -File -Recurse
         shell: powershell
       - uses: actions/checkout@v3
         with:
