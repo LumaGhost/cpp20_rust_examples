@@ -22,6 +22,7 @@ def main():
     os.environ['CARGO_TARGET_DIR'] = args.cargo_target_dir
     subprocess.run(['cargo', 'build', '-vv', '--release', '--manifest-path', args.cargo_manifest_path], check=True, env=os.environ)
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.so')
+    copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dll')
 
 if __name__ == "__main__":
     main()
