@@ -14,11 +14,6 @@ jobs:
     runs-on: ${{ inputs.image_name }}
     timeout-minutes: 10
     steps:
-      - name: windows inspecton
-        if: ${{ inputs.platform_name }} == 'windows'
-        run: |
-          Get-ChildItem -Path C:\ -Include *clang* -Recurse
-        shell: pwsh
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
