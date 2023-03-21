@@ -17,8 +17,7 @@ jobs:
       - name: windows inspecton
         if: ${{ inputs.platform_name }} == 'windows'
         run: |
-          Get-ChildItem -Path C:\ -Include *llvm*
-          Get-ChildItem -Path D:\ -Include *llvm*
+          Get-ChildItem -Path C:\ -Include *msys64*
         shell: pwsh
       - uses: actions/checkout@v3
         with:
