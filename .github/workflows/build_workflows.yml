@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: windows inspecton
         if: ${{ inputs.platform_name }} == 'windows'
-        run: Get-Childitem -Path D:\ -Include *LLVM* -Recurse
+        run: Get-Childitem -Include *LLVM*
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
