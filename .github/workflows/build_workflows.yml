@@ -19,6 +19,9 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+      - name: windows inspecton
+        if: ${{ inputs.platform_name }} == 'windows'
+        run: Find-ChildItem -Type f -Name ".*clang"
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
