@@ -1,2 +1,0 @@
-option('generated_rust_install_dir', type: 'string',
-        description : 'directory to install generated rust bindings')

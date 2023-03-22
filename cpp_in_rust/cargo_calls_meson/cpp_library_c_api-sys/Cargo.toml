@@ -9,4 +9,3 @@ edition = "2021"
 
 
 [build-dependencies]
-meson = "1.0.0"
