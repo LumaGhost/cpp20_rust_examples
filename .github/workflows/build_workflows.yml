@@ -34,7 +34,7 @@ jobs:
           cache-name: cache-conan-modules
         with:
           path: ${{ env.CONAN_HOME }}
-          key: conan-host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt') }}
+          key: conan-host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt', '**/conan-ci') }}
       - name: windows install pkg-config
         if: ${{ inputs.platform_name }} == 'windows'
         run: choco install pkgconfiglite
