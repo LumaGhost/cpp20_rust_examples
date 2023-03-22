@@ -17,13 +17,13 @@ endif
 
 
 dylib_extension = '.so'
-if host_machine.system() == 'windows'
-    dylib_extension = '.dll'
-endif 
-
 dylib_prefix = 'lib'
 if host_machine.system() == 'windows'
+    dylib_extension = '.dll'
     dylib_prefix = ''
+endif 
+if host_machine.system() == 'darwin'
+    dylib_extension = '.dylib'
 endif 
 
 install_dir = 'rust_lib_c_abi'
