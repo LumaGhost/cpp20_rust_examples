@@ -36,13 +36,12 @@ jobs:
           path: ${{ env.CONAN_HOME }}
           key: conan-host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt', '**/conan-ci') }}
       - name: windows install pkg-config
-        if: ${{ inputs.platform_name }} == 'windows'
+        if: ${{ inputs.platform_name == 'windows' }}
         run: choco install pkgconfiglite
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
-      - name: windows conan default profile detect
-        if: ${{ inputs.platform_name }} == 'windows'
+      - name: conan default profile detect
         run: conan profile detect
       - name: rust in cpp - meson calls cargo workflow
         working-directory: ${{ github.workspace }}/rust_in_cpp/meson_calls_cargo/rust_lib_cpp_bindings
