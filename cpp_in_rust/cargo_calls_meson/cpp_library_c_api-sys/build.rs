@@ -49,5 +49,6 @@ fn main() {
     println!("cargo:rustc-link-lib={}", cpp_lib_name);
     // ideally we'd set rpath but... https://github.com/rust-lang/cargo/issues/5077
     println!("cargo:rustc-env=LD_LIBRARY_PATH={}", cpp_lib_dir.to_str().unwrap())
+    println!("cargo:rustc-env=DYLD_LIBRARY_PATH={}", cpp_lib_dir.to_str().unwrap())
     
 }
