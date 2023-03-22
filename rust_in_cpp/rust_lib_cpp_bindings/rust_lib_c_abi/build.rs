@@ -1,6 +1,7 @@
 
 
 
+#[cfg(feature = "binding-generation")]
 extern crate cbindgen;
 
 use std::env;
@@ -9,12 +10,14 @@ use std::path::PathBuf;
 
 fn main() {
 
+    #[cfg(feature = "binding-generation")]
     if let Some(_) = env::var_os("RUST_LIB_GENERATE_BINDINGS") {
         generate_bindings();
     }
 
 }
 
+#[cfg(feature = "binding-generation")]
 fn generate_bindings() {
     let crate_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
 
