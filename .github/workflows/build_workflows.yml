@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ inputs.image_name }}
     timeout-minutes: 10
     env:
-      CONAN_HOME: default_conan_home/conan
+      CONAN_HOME: /default_conan_home/conan
     steps:
       - uses: actions/checkout@v3
         with:
