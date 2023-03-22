@@ -19,6 +19,10 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.2.1
+          workspaces: |
+            ${{ github.workspace }}/rust_in_cpp/rust_lib_cpp_bindings/build/rust_lib_c_abi
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
