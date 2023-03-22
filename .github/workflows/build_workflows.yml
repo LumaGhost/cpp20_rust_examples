@@ -13,6 +13,8 @@ jobs:
   workflow_test:
     runs-on: ${{ inputs.image_name }}
     timeout-minutes: 10
+    env:
+      CONAN_HOME: ${{ env.GITHUB_REPOSITORY_ID }}/conan
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,7 +32,7 @@ jobs:
         env:
           cache-name: cache-conan-modules
         with:
-          path: ${{ env.CONAN_USER_HOME }}
+          path: ${{ env.CONAN_HOME }}
           key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt') }}
       - name: pip install
         timeout-minutes: 2
