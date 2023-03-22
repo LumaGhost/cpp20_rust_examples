@@ -1,0 +1,11 @@
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.libcxx=libc++ 
+compiler.version=14
+compiler.cppstd=20
+os=Windows
+[buildenv]
+CC=C:\ghcup\ghc\9.6.1\mingw\bin\clang.exe
+CXX=C:\ghcup\ghc\9.6.1\mingw\bin\clang++.exe
