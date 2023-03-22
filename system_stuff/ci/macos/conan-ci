@@ -8,4 +8,4 @@ compiler.cppstd=20
 os=Macos
 [buildenv]
 CC=gcc-12
-CXX=gcc-12
+CXX=g++-12
