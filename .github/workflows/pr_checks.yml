@@ -7,5 +7,5 @@ jobs:
   build-workflows-windows:
     uses: ./.github/workflows/build_workflows.yml
     with:
-      image_name: ubuntu-latest
-      platform_name: linux
+      image_name: windows-latest
+      platform_name: windows
