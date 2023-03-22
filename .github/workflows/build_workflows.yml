@@ -24,13 +24,32 @@ jobs:
         with: 
           workspaces: |
             ${{ github.workspace }}/rust_in_cpp/meson_calls_cargo/rust_lib_cpp_bindings/build -> rust_lib_c_abi
+      - name: Using the builtin GitHub Cache Action for .conan
+        id: github-cache-conan
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-conan-modules
+        with:
+          path: ${{ env.CONAN_USER_HOME }}
+          key: host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt') }}
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
-      - name: rust in cpp workflow
+      - name: rust in cpp - meson calls cargo workflow
         working-directory: ${{ github.workspace }}/rust_in_cpp/meson_calls_cargo/rust_lib_cpp_bindings
         run: |
           meson setup --native-file ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/ci-native.ini rust_in_cpp_build
           meson compile -C rust_in_cpp_build
           meson test -C rust_in_cpp_build --print-errorlogs
           meson install -C rust_in_cpp_build  --destdir ./meson_install
+      - name: cpp in rust - cargo calls conan workflow (creating conan package)
+        working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys/cpp_library
+        run: |
+          conan create . --build=missing --profile:build=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci --profile:host=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
+      - name: cpp in rust - cargo calls conan workflow (running cargo)
+        working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys
+        env:
+          CARGO_CONAN_PROFILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
+        run: |
+          cargo build -vv
+          cargo test -- --nocapture
