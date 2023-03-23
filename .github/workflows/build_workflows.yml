@@ -17,11 +17,13 @@ jobs:
       CONAN_HOME: ${{ github.workspace }}/conan_home
     steps:
       - uses: actions/checkout@v3
+        timeout-minutes: 1
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Rust Cache
+        timeout-minutes: 1
         uses: Swatinem/rust-cache@v2.2.1
         with: 
           workspaces: |
@@ -29,6 +31,7 @@ jobs:
           cache-on-failure: true
       - name: Conan Cache
         id: github-cache-conan
+        timeout-minutes: 1
         uses: actions/cache@v1
         env:
           cache-name: cache-conan-modules
@@ -37,6 +40,7 @@ jobs:
           key: conan-host-${{ runner.os }}-target-${{ runner.os }}-${{ hashFiles('**/conanfile.py', '**/conanfile.txt', '**/conan-ci') }}
       - name: windows install pkg-config
         if: ${{ inputs.platform_name == 'windows' }}
+        timeout-minutes: 2
         run: choco install pkgconfiglite
       - name: Set up Visual Studio shell
         if: ${{ inputs.platform_name == 'windows' }}
