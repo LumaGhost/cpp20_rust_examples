@@ -11,6 +11,7 @@ fn prepare_ld_path(paths: &Vec<std::path::PathBuf>) -> String {
     let mut ld_path = String::new();
     for path in paths {
         ld_path.push_str(path.to_str().unwrap());
+        run_subprocess(std::process::Command::new("dir").arg(path.to_str().unwrap()), "dir")
         if std::env::consts::OS == "windows" {
             ld_path.push(';');
         } else {
@@ -27,7 +28,7 @@ fn main() {
 
     let mut conan_install = std::process::Command::new("conan");
     
-    conan_install.args(["install", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
+    conan_install.args(["install", "-vdebug", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
 
     if let Some(conan_profile) = std::env::var_os("CARGO_CONAN_PROFILE").map(|p|std::path::PathBuf::from(p)) {
         conan_install.args(["-pr:h", conan_profile.to_str().unwrap(), "-pr:b", conan_profile.to_str().unwrap()]);
