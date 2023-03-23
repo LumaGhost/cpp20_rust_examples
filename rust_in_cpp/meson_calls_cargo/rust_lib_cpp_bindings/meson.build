@@ -19,7 +19,7 @@ endif
 dylib_extension = '.so'
 dylib_prefix = 'lib'
 if host_machine.system() == 'windows'
-    dylib_extension = '.dll'
+    dylib_extension = '.dll.lib'
     dylib_prefix = ''
 endif 
 if host_machine.system() == 'darwin'
