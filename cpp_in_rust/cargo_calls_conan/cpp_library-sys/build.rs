@@ -11,7 +11,7 @@ fn prepare_ld_path(paths: &Vec<std::path::PathBuf>) -> String {
     let mut ld_path = String::new();
     for path in paths {
         ld_path.push_str(path.to_str().unwrap());
-        run_subprocess(std::process::Command::new("dir").arg(path.to_str().unwrap()), "dir")
+        run_subprocess(std::process::Command::new("dir").arg(path.to_str().unwrap()), "dir");
         if std::env::consts::OS == "windows" {
             ld_path.push(';');
         } else {
