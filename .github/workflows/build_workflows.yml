@@ -38,6 +38,9 @@ jobs:
       - name: windows install pkg-config
         if: ${{ inputs.platform_name == 'windows' }}
         run: choco install pkgconfiglite
+      - name: Set up Visual Studio shell
+        if: ${{ inputs.platform_name == 'windows' }}
+        uses: egor-tensin/vs-shell@v2
       - name: pip install
         timeout-minutes: 2
         run: pip3 install -r ${{ github.workspace }}/system_stuff/ci/requirements.txt
