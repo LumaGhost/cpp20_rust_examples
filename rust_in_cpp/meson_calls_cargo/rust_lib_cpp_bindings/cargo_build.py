@@ -24,7 +24,7 @@ def main():
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.so')
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dll')
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dylib')
-    subprocess.run(['dir', args.cargo_target_dir], check=True)
+    subprocess.run(['dir', os.path.join(args.cargo_target_dir,"release")], check=True)
     subprocess.run(['dir'], check=True)
 
 if __name__ == "__main__":
