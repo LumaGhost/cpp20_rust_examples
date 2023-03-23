@@ -10,5 +10,5 @@ compiler.version=17
 compiler.cppstd=20
 os=Windows
 [buildenv]
-CC=C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/Llvm/bin/clang-cl.exe
-CXX=C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/Llvm/bin/clang-cl.exe
+CC=C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Tools/Llvm/bin/clang-cl.exe
+CXX=C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Tools/Llvm/bin/clang-cl.exe
