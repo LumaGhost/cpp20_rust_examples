@@ -54,7 +54,7 @@ jobs:
       - name: cpp in rust - cargo calls conan workflow (creating conan package)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys/cpp_library
         run: |
-          conan create . --build=missing --profile:build=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci --profile:host=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
+          conan create . -vdebug --build=missing --profile:build=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci --profile:host=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
       - name: cpp in rust - cargo calls conan workflow (running cargo)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys
         env:
