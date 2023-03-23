@@ -6,7 +6,7 @@ compiler.libcxx=libstdc++
 compiler.runtime=dynamic
 compiler.runtime_version=v141
 compiler.runtime_type=Release
-compiler.version=17
+compiler.version=15
 compiler.cppstd=20
 os=Windows
 [buildenv]
