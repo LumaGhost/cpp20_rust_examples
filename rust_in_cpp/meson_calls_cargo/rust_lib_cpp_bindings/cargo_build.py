@@ -23,6 +23,8 @@ def main():
     subprocess.run(['cargo', 'build', '-vv', '--release', '--manifest-path', args.cargo_manifest_path], check=True, env=os.environ)
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.so')
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dll')
+    copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dll.lib')
+    copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dll.exp')
     copy(os.path.join(args.cargo_target_dir,"release"), os.getcwd(), '*.dylib')
     subprocess.run(['dir', os.path.join(args.cargo_target_dir,"release")], check=True)
     subprocess.run(['dir'], check=True)
