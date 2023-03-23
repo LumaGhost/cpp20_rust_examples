@@ -2,7 +2,6 @@
 arch=x86_64
 build_type=Release
 compiler=clang
-compiler.libcxx=libstdc++
 compiler.runtime=dynamic
 compiler.runtime_version=v141
 compiler.runtime_type=Release
