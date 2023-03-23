@@ -4,5 +4,5 @@ project('cpp_library_c_api', 'cpp',
 
 cpplib = shared_library('cpp_library_c_api', 'src/lib.cpp',
     include_directories : include_directories('include'),
-    override_options : ['cpp_std=c++2a'],
+    override_options : ['cpp_std=c++20'],
     install : true)
