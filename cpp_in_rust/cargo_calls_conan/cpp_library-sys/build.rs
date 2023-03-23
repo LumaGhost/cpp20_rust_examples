@@ -26,8 +26,6 @@ fn main() {
     // conan profile name and install folder could be envs
     let install_folder_conan = std::env::current_dir().unwrap().join("conan_build");
 
-    run_subprocess(std::process::Command::new("dir").arg(install_folder_conan.to_str().unwrap()), "dir");
-
     let mut conan_install = std::process::Command::new("conan");
     
     conan_install.args(["install", "-vtrace", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
@@ -37,6 +35,8 @@ fn main() {
     }
     conan_install.arg(".");
     run_subprocess(&mut conan_install, "conan install");
+
+    run_subprocess(std::process::Command::new("dir").arg(install_folder_conan.to_str().unwrap()), "dir");
 
     // appending to pkgconfig search path
     if let Some(current_pgk_config_path) = std::env::var_os("PKG_CONFIG_PATH") {
