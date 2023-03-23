@@ -28,7 +28,7 @@ fn main() {
 
     let mut conan_install = std::process::Command::new("conan");
     
-    conan_install.args(["install", "-vdebug", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
+    conan_install.args(["install", "-vtrace", "--build=missing", "-of", install_folder_conan.to_str().unwrap()]);
 
     if let Some(conan_profile) = std::env::var_os("CARGO_CONAN_PROFILE").map(|p|std::path::PathBuf::from(p)) {
         conan_install.args(["-pr:h", conan_profile.to_str().unwrap(), "-pr:b", conan_profile.to_str().unwrap()]);
