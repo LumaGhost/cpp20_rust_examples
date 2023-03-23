@@ -12,3 +12,5 @@ os=Windows
 [buildenv]
 CC=clang-cl.exe
 CXX=clang-cl.exe
+[conf]
+tools.cmake.cmaketoolchain:generator=Visual Studio 17
