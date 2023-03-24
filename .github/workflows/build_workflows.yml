@@ -65,7 +65,9 @@ jobs:
           CARGO_CONAN_PROFILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
         run: |
           cargo build -vv --release
+          ./conan_build/conanrun.bat
           cargo test --release -- --nocapture
+          ./conan_build/deactivate_conanrun.bat
       - name: cpp in rust - cargo calls meson workflow
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys
         env:
