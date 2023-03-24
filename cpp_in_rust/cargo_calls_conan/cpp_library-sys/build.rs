@@ -57,9 +57,9 @@ fn main() {
     // looks like the rpath is already set correctly? thanks to the .pc files or the pkgconfig crate? idk lol
     println!("cargo:rustc-env=LD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths));
     println!("cargo:rustc-env=DYLD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths));
-    if std::env::consts::OS == "windows" {
-        let path = std::env::var("PATH").unwrap();
-        println!("cargo:rustc-env=PATH={};{}", path, prepare_ld_path(&cpp_lib.link_paths));
-    }
+    // if std::env::consts::OS == "windows" {
+    //     let path = std::env::var("PATH").unwrap();
+    //     println!("cargo:rustc-env=PATH={};{}", path, prepare_ld_path(&cpp_lib.link_paths));
+    // }
     
 }
