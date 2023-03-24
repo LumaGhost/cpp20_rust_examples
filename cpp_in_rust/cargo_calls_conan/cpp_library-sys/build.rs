@@ -59,9 +59,9 @@ fn main() {
     println!("cargo:rustc-env=DYLD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths));
 
     run_subprocess(std::process::Command::new("llvm-objdump")
-        .args(["--dynamic-syms", "--demangle", cpp_lib.link_paths[0].join("cpp_library.lib").to_str().unwrap()]), "objdump cpp");
+        .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[0].join("cpp_library.lib").to_str().unwrap()]), "objdump cpp");
     run_subprocess(std::process::Command::new("llvm-objdump")
-        .args(["--dynamic-syms", "--demangle", cpp_lib.link_paths[1].join("fmt.lib").to_str().unwrap()]), "objdump fmt");
+        .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[1].join("fmt.lib").to_str().unwrap()]), "objdump fmt");
     // if std::env::consts::OS == "windows" {
     //     let path = std::env::var("PATH").unwrap();
     //     println!("cargo:rustc-env=PATH={};{}", path, prepare_ld_path(&cpp_lib.link_paths));
