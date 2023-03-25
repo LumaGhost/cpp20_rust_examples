@@ -11,7 +11,7 @@ fn prepare_ld_path(paths: &Vec<std::path::PathBuf>) -> String {
     let mut ld_path = String::new();
     for path in paths {
         ld_path.push_str(path.to_str().unwrap());
-        run_subprocess(std::process::Command::new("dir").arg(path.to_str().unwrap()), "dir");
+        // run_subprocess(std::process::Command::new("dir").arg(path.to_str().unwrap()), "dir");
         if std::env::consts::OS == "windows" {
             ld_path.push(';');
         } else {
@@ -36,7 +36,7 @@ fn main() {
     conan_install.arg(".");
     run_subprocess(&mut conan_install, "conan install");
 
-    run_subprocess(std::process::Command::new("dir").arg(install_folder_conan.to_str().unwrap()), "dir");
+    // run_subprocess(std::process::Command::new("dir").arg(install_folder_conan.to_str().unwrap()), "dir");
 
     // appending to pkgconfig search path
     if let Some(current_pgk_config_path) = std::env::var_os("PKG_CONFIG_PATH") {
@@ -58,10 +58,10 @@ fn main() {
     println!("cargo:rustc-env=LD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths));
     println!("cargo:rustc-env=DYLD_LIBRARY_PATH={}", prepare_ld_path(&cpp_lib.link_paths));
 
-    run_subprocess(std::process::Command::new("llvm-objdump")
-        .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[0].join("cpp_library.lib").to_str().unwrap()]), "objdump cpp");
-    run_subprocess(std::process::Command::new("llvm-objdump")
-        .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[1].join("fmt.lib").to_str().unwrap()]), "objdump fmt");
+    // run_subprocess(std::process::Command::new("llvm-objdump")
+    //     .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[0].join("cpp_library.lib").to_str().unwrap()]), "objdump cpp");
+    // run_subprocess(std::process::Command::new("llvm-objdump")
+    //     .args(["--syms", "--demangle", "--all-headers", cpp_lib.link_paths[1].join("fmt.lib").to_str().unwrap()]), "objdump fmt");
     // if std::env::consts::OS == "windows" {
     //     let path = std::env::var("PATH").unwrap();
     //     println!("cargo:rustc-env=PATH={};{}", path, prepare_ld_path(&cpp_lib.link_paths));
