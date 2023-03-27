@@ -57,8 +57,10 @@ jobs:
           cargo test --release --no-run
       - name: cpp in rust - cargo calls meson workflow (setting path - windows)
         if: ${{ inputs.platform_name == 'windows' }}
-        run: |
-          echo "${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys/cpp_library_c_api/build" >> $GITHUB_PATH
+        uses: myci-actions/export-env-var-powershell@1
+        with:
+          name: PATH
+          value: $env:PATH;${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys/cpp_library_c_api/build
       - name: cpp in rust - cargo calls meson workflow (running tests)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys
         env:
