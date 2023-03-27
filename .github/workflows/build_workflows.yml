@@ -28,7 +28,6 @@ jobs:
         with: 
           workspaces: |
             ${{ github.workspace }}/rust_in_cpp/meson_calls_cargo/rust_lib_cpp_bindings/build -> rust_lib_c_abi
-          cache-on-failure: true
       - name: Conan Cache
         id: github-cache-conan
         timeout-minutes: 1
