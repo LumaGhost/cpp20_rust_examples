@@ -59,22 +59,46 @@ jobs:
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys/cpp_library
         run: |
           conan create . -vtrace --build=missing --profile:build=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci --profile:host=${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
-      - name: cpp in rust - cargo calls conan workflow (running cargo)
+      - name: cpp in rust - cargo calls conan workflow (building with cargo)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys
         env:
           CARGO_CONAN_PROFILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
         run: |
           cargo build -vv --release
-          ./conan_build/conanrun.bat
+          cargo test --release --no-run
+      - name: cpp in rust - cargo calls conan workflow (running tests - non windows)
+        working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys
+        if: ${{ inputs.platform_name != 'windows' }}
+        env:
+          CARGO_CONAN_PROFILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
+        run: |
           cargo test --release -- --nocapture
-          ./conan_build/deactivate_conanrun.bat
-      - name: cpp in rust - cargo calls meson workflow
+      - name: cpp in rust - cargo calls conan workflow (running tests - windows)
+        working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys
+        if: ${{ inputs.platform_name == 'windows' }}
+        env:
+          CARGO_CONAN_PROFILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/conan-ci
+        run: |
+          ./conan_build/conanrun.ps1
+          cargo test --release -- --nocapture
+          ./conan_build/deactivate_conanrun.ps1
+      - name: cpp in rust - cargo calls meson workflow (build with cargo)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys
         env:
           CARGO_USER_MESON_NATIVE_FILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/ci-native.ini
         run: |
-          cargo build -vv
-          cargo test -- --nocapture
+          cargo build --release -vv
+          cargo test --release --no-run
+      - name: cpp in rust - cargo calls meson workflow (setting path - windows)
+        if: ${{ inputs.platform_name == 'windows' }}
+        run: |
+          echo "${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys/cpp_library_c_api/build" >> $GITHUB_PATH
+      - name: cpp in rust - cargo calls meson workflow (running tests)
+        working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_meson/cpp_library_c_api-sys
+        env:
+          CARGO_USER_MESON_NATIVE_FILE: ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/ci-native.ini
+        run: |
+          cargo test --release  -- --nocapture
       - name: cpp in rust - meson builds rust and cpp workflow
         working-directory: ${{ github.workspace }}/cpp_in_rust/meson_builds_cpp_and_rust
         run: |
