@@ -72,7 +72,7 @@ jobs:
         run: |
           meson setup --native-file ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/ci-native.ini build
           meson compile -C build
-          meson test -C build --print-errorlogs
+          meson test -v -C build --print-errorlogs
           meson install -C build --destdir ./meson_install
       - name: cpp in rust - cargo calls conan workflow (creating conan package)
         working-directory: ${{ github.workspace }}/cpp_in_rust/cargo_calls_conan/cpp_library-sys/cpp_library
@@ -107,5 +107,5 @@ jobs:
         run: |
           meson setup --native-file ${{ github.workspace }}/system_stuff/ci/${{ inputs.platform_name }}/ci-native.ini rust_in_cpp_build
           meson compile -C rust_in_cpp_build
-          meson test -C rust_in_cpp_build --print-errorlogs
+          meson test -v -C rust_in_cpp_build --print-errorlogs
           meson install -C rust_in_cpp_build  --destdir ./meson_install
