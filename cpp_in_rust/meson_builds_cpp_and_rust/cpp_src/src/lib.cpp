@@ -3,6 +3,8 @@
 #include <numbers>
 #include <concepts>
 
+#include <lib_c.h>
+
 template<class T>
 concept IntsOnly = std::is_same_v<T, int>;
 
