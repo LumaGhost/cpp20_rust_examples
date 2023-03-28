@@ -26,7 +26,7 @@ this folder includes environment spefific config used for CI. our local developm
 
 prerequisites: rust, cmake, meson, ninja, conan, pkg-config, a c++ compiler new enough to have support for concepts and std::numbers.
 
-for more details on prerequisites feel free to check out our CI setup, and for workflow/build commands refer to individual subprojects (or our CI setup)
+for more details on prerequisites feel free to check out our [setup examples](system_stuff/examples) or [CI configuration](system_stuff/ci), and for workflow/build commands refer to individual subprojects (or our github actions)
 
 
 **additional thoughts**
