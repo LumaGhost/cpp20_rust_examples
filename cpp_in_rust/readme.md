@@ -1,6 +1,8 @@
 **overview**
 
-the following approaches for importing c++ code into rust are presented. each approach focuses on an example c++ library with a c api, and making that library available in rust code. the purpose of these descriptions is to provide an overview of each approach and tradeoffs to help the reader figure out which approach may be more interesting/relevant. for more details on the each implementation and approach see their respective subfolders.
+the following approaches for importing c++ code into rust are presented. each approach focuses on an example c++ library with a c api, and making that library available in rust code.
+
+the purpose of these descriptions is to provide an overview of each approach and tradeoffs to help the reader figure out which approach may be more interesting/relevant. for more details on the each implementation and approach see their respective subfolders.
 
 [cargo calls conan](cargo_calls_conan): conan is used to manage c++ dependencies, and cargo invokes conan in order to fetch and locate c++ dependencies. functionality is contained behind cargos interface and the project mostly functions as a typical rust project besides needing to manage a conanfile.txt. i would recommend this approach as the default. this approach should generalze to any build system thats supported by conan.
 
