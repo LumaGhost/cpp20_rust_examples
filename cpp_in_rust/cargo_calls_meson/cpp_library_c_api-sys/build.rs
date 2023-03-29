@@ -35,8 +35,6 @@ fn main() {
         .args(["compile", "-C", build_dir.to_str().unwrap()]),
         "meson compile");
 
-    // meson install?
-
     let cpp_lib_dir = &build_dir;
     let cpp_lib_name = "cpp_library_c_api";
     println!("cpp lib dir: {}", cpp_lib_dir.to_str().unwrap());
@@ -47,7 +45,7 @@ fn main() {
     println!("cargo:rerun-if-changed={}", "build.rs");
     println!("cargo:rustc-link-search=native={}", cpp_lib_dir.to_str().unwrap());
     println!("cargo:rustc-link-lib={}", cpp_lib_name);
-    // ideally we'd set rpath but... https://github.com/rust-lang/cargo/issues/5077
+
     println!("cargo:rustc-env=LD_LIBRARY_PATH={}", cpp_lib_dir.to_str().unwrap());
     println!("cargo:rustc-env=DYLD_LIBRARY_PATH={}", cpp_lib_dir.to_str().unwrap());
     
