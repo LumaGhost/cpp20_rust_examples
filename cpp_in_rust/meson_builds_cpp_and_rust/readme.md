@@ -1,3 +1,16 @@
 
+**overview**
 
-this example demonstrates using meson to compile rust so that rust and c++ code can live in the same meson build. this approach is potentially a lot simpler since there is only one build to manage, but, at the time of writing this, building rust with meson has the downside of not supporting external crates
+in this example meson is used to build a rust library and the cpp library that it depends on.
+
+**layout**
+
+the layout here is meant to represent rust and cpp source living in the same project. the cpp source and rust source are in cpp_src and rust_src respectively.
+
+**workflow**
+
+this example is just a regular meson project, so messon commands e.g. `meson setup`, `meson compile`, `meson test` etc. will work.
+
+**additional thoughts**
+
+dependencies: this example doesnt use any additional dependencies on the rust or cpp side. this is due to both the difficulty of managing dependencies in cpp without a package manager, and the current lack of supports for external rust crates in meson.
