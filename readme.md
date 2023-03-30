@@ -24,7 +24,9 @@ this folder includes environment spefific config used for CI. our local developm
 
 **setup**
 
-prerequisites: rust, cmake, meson, ninja, conan, pkg-config, a c++ compiler new enough to have support for concepts and std::numbers.
+prerequisites: rust, cmake, meson, ninja, conan >2.0, pkg-config, a c++ compiler new enough to have support for concepts and std::numbers.
+
+each workflow is tested on windows, linux, and mac.
 
 for more details on prerequisites feel free to check out our [setup examples](system_stuff/examples) or [CI configuration](system_stuff/ci), and for workflow/build commands refer to individual subprojects (or our github actions).
 
@@ -32,4 +34,8 @@ for more details on prerequisites feel free to check out our [setup examples](sy
 **additional thoughts**
 
 meson is used throughout as the preferred c++ build system because i wanted to get more experience with meson. however all of these examples should still generalize for other c++ build systems especially cmake. feel free to experiment with other build systems (: 
+
+where there is a choice between static or dynamic/shared libraries i chose to use shared libraries. i realise some people may need one or the other (or both) depending on use cases. i chose to use shared libraries througout mainly because it seemed more challenging to me, but these approaches should still work for static libraries. 
+
+i tried to make these examples relatively robust and representative of my experience with production code, but still keep in mind these are just examples at the end of the day (:
 
