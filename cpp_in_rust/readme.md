@@ -10,3 +10,8 @@ the purpose of these descriptions is to provide an overview of each approach and
 
 [meson builds cpp and rust](meson_builds_cpp_and_rust): both the rust library and the c++ library it depends on are compiled with meson. again the c++ library doesnt have any dependencies. the rust side also doesnt have any dependencies either since, as far as i know, external rust crates arent supported in meson yet. the lack of dependency support may be a deal breaker for most projects, but this example still has the benefit of containing everyhing within one build system (i also personally think its very cool that one build system can compile both languages and something besides cargo can be used for rust projects).
 
+
+**additional thoughts**
+
+for cargo based projects i tried to follow the following conventions for rust crates that wrap native libraries https://doc.rust-lang.org/cargo/reference/build-scripts.html#-sys-packages
+
