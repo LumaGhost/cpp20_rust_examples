@@ -6,7 +6,7 @@ in this example we have a cpp library that depends on a rust library, and the ru
 
 [rust_lib_cpp_bindings](rust_lib_cpp_bindings) this folder represents a cpp library that provides bindings for a rust library. besides the dependency on the rust library this cpp library is header only
 
-[rust_lib_c_abi](rust_lib_cpp_bindings/rust_lib_c_abi) this folder represents a cargo library with a c abi. this library can function as a regular cargo crate. however, for the purpose of importing this rust code into cpp i have the rust library living in source as a sub project of the cpp library. as far as i know cargo doesnt supprt installing library targets with cargo (i.e. we cant simply list the dependencies we want and install them like we did in the [cargo calls conan example](../../cpp_in_rust/cargo_calls_conan)), so we are responsible for fetching, building, and locating the rust library which to me is most simply accomplished with the rust code living in source as a subproject.
+[rust_lib_c_abi](rust_lib_cpp_bindings/rust_lib_c_abi) this folder represents a cargo library with a c abi. this library can function as a regular cargo crate. however, for the purpose of importing this rust code into cpp i have the rust library living in source as a sub project of the cpp library. as far as i know cargo doesnt support installing library targets with cargo (i.e. we cant simply list the dependencies we want and install them like we did in the [cargo calls conan example](../../cpp_in_rust/cargo_calls_conan)), so we are responsible for fetching, building, and locating the rust library which to me is most simply accomplished with the rust code living in source as a subproject.
 
 **additional thoughts**
 
