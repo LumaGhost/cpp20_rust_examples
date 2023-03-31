@@ -4,7 +4,7 @@
 
 hello! this project is a collection of examples on importing modern c++ code into rust projects and rust code into c++ projects. 
 
-the main motivation of this project is to explore options that existing c++ codebases could use to introduce rust gradually or use rust as a small part of an existing c++ project, and to provide more in depth/advanced examples for using modern build tools like meson and cargo in a cross platform scenario.
+the main motivation of this project is to explore options that existing c++ codebases could use to introduce rust gradually or use rust as a small part of an existing c++ project, and to provide more in depth/advanced examples for using modern build tools like meson and conan in a cross platform scenario.
 
 a key difference between this project and other examples i've seen on rust and c++ interop is that this project focuses on c++ projects that use modern toolchains and build systems (cmake, meson, cargo, newer c++ compilers, etc). 
 
