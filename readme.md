@@ -17,7 +17,7 @@ a collection of examples for importing c++20 code into rust. currently there are
 examples for importing rust into c++ projects. currently there is just one example where meson is used to invoke cargo. however, this example could generalize in a straightforward way to use conan or cmake. for more details see the [readme](rust_in_cpp/readme.md) for that section of the project.
 
 [system_stuff](system_stuff/)
-this folder includes environment spefific config used for CI. we also include our local development setups as examples. these configurations should not be required for working with this project, though feel free to reference them when setting up your environment. see [setup](#setup_anchor) for more details.
+this folder includes environment specific config used for CI. we also include our local development setups as examples. these configurations should not be required for working with this project, though feel free to reference them when setting up your environment. see [setup](#setup_anchor) for more details.
 
 
 <a name="setup_anchor"></a>
